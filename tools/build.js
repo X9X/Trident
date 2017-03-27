@@ -1,36 +1,35 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+// More info on Webpack's Node API here: https://webpack.github.io/docs/node.js-api.html
+// Allowing console calls below since this is a build file.
+/* eslint-disable no-console */
+import webpack from 'webpack';
+import config from '../webpack.config.prod';
+import {chalkError, chalkSuccess, chalkWarning, chalkProcessing} from './chalkConfig';
 
-import cp from 'child_process';
-import run from './run';
-import clean from './clean';
-import copy from './copy';
-import bundle from './bundle';
-import render from './render';
-import pkg from '../package.json';
+process.env.NODE_ENV = 'production'; // this assures React is built in prod mode and that the Babel dev config doesn't apply.
 
-/**
- * Compiles the project from source files into a distributable
- * format and copies it to the output (build) folder.
- */
-async function build() {
-  await run(clean);
-  await run(copy);
-  await run(bundle);
+console.log(chalkProcessing('Generating minified bundle. This will take a moment...'));
 
-  if (process.argv.includes('--static')) {
-    await run(render);
+webpack(config).run((error, stats) => {
+  if (error) { // so a fatal error occurred. Stop here.
+    console.log(chalkError(error));
+    return 1;
   }
 
-  if (process.argv.includes('--docker')) {
-    cp.spawnSync('docker', ['build', '-t', pkg.name, '.'], { stdio: 'inherit' });
-  }
-}
+  const jsonStats = stats.toJson();
 
-export default build;
+  if (jsonStats.hasErrors) {
+    return jsonStats.errors.map(error => console.log(chalkError(error)));
+  }
+
+  if (jsonStats.hasWarnings) {
+    console.log(chalkWarning('Webpack generated the following warnings: '));
+    jsonStats.warnings.map(warning => console.log(chalkWarning(warning)));
+  }
+
+  console.log(`Webpack stats: ${stats}`);
+
+  // if we got this far, the build succeeded.
+  console.log(chalkSuccess('Your app is compiled in production mode in /dist. It\'s ready to roll!'));
+
+  return 0;
+});
