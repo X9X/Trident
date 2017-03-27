@@ -1,7 +1,7 @@
 {
   "name": "react-slingshot",
-  "version": "5.0.0",
-  "description": "Starter kit for creating apps with React and Redux",
+  "version": "0.0.1",
+  "description": "H5 Cliet of Netease Cloud Music",
   "engines": {
     "npm": ">=3"
   },
@@ -28,7 +28,7 @@
     "open:cover": "npm run test:cover && open coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "author": "Cory House",
+  "author": "Young",
   "license": "MIT",
   "dependencies": {
     "object-assign": "4.1.0",
@@ -106,7 +106,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/coryhouse/react-slingshot"
+    "url": "https://github.com/X9X/Trident.git"
   },
   "jest": {
     "moduleNameMapper": {
