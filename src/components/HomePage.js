@@ -8,6 +8,7 @@ const HomePage = () => {
       <h2>Welcome</h2>
       <ol>
         <li>This is a link of <Link to="hello-world">Hello World</Link></li>
+        <li>This is a link of <Link to="music-list">Music List</Link></li>
         <li>We stole Poseidon's weapon and used it as a fork in BBQ.</li>
       </ol>
     </div>

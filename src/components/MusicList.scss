@@ -1,0 +1,14 @@
+body{
+	margin: 0;
+	padding:0;
+}
+.list-container{
+	margin: 3px 10px;
+	.title{
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.content{
+		font-size: 14px;
+	}
+}
