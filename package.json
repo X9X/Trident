@@ -6,10 +6,9 @@
     "npm": ">=3"
   },
   "scripts": {
-    "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
     "dev": "node ./tools/srcServer.js",
+    "prod": "node ./tools/distServer.js",
     "build": "node tools/build.js",
-    "lint": "esw webpack.config.* src tools --color",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "test": "jest"

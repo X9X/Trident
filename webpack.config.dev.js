@@ -5,7 +5,10 @@ const  path = require('path');
 
 module.exports = {
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.json']
+    extensions: ['*', '.js', '.jsx', '.json'],
+    alias: {
+      '@style': path.resolve(__dirname, 'src/styles/'),
+    }
   },
   devtool: 'eval-source-map',
   entry: [

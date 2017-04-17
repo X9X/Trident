@@ -1,5 +1,5 @@
 import React from 'react';
-import "./MusicList.scss"
+import "@style/MusicList.scss"
 class MusicList extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -16,7 +16,7 @@ class MusicList extends React.Component {
   }
 
   getList() {
-    let list = this.state.musicList.map(
+    return this.state.musicList.map(
       (item,index) => {
         return (
 		<div className="list-container" key={index}>
@@ -26,8 +26,6 @@ class MusicList extends React.Component {
 		)
       }
     )
-    return list;
-
   }
 
   render() {
